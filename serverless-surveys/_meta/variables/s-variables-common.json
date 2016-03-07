@@ -1,0 +1,6 @@
+{
+  "project": "serverless-surveys",
+  "projectBucket": "serverless.us-west-2.serverless-41erfs",
+  "domain": "serverless-41erfs",
+  "notificationEmail": "jbarratt@serialized.net"
+}
