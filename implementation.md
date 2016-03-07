@@ -70,4 +70,36 @@ So now to create the endpoint:
     # survey
     sls function create survey/results
 
+Great, first deploy
+
+    sls dash deploy
+        Ctrl-A, down,down,Deploy
+
+Get seems to work, but POST no dice. Ah, needs to be in `s-function.json`. Fixed it.
+Dash deploy again.
+
+    http POST https://qpzm97uod1.execute-api.us-west-2.amazonaws.com/dev/results "foo=bar"
+
+	{                                                           
+		"event": {                                              
+			"foo": "bar"                                        
+		},                                                      
+		"message": "Submission sent to /dev/null"               
+	}                                                           
+
+Neat! That seems to work. Still need to know if it's a GET or POST though.
+
+From serverless-starter, it looks like the root s-templates.json needs to have an API request tempalte in it. Cool, stealing that.
+
+Yuck, big barf. Bad JSON syntax for my edit. I fixed it, but goodness help you if you'd made a bunch of edits. Traceback gave no indication of what the actual problem was.
+
+And now the event is much richer.
+
+Parameters are now coming in as `body: {"foo": "bar"}`. I'm also getting `httpMethod`: `POST`.
+And `queryParams: {}`.
+
+
+
+
+
 
