@@ -66,7 +66,8 @@ Still a decent amount of goodness in the default deploy:
 
 So now to create the endpoint:
 
-    serverless component create -r python2.7
-    serverless function create survey/results
+    sls component create -r python2.7
+    # survey
+    sls function create survey/results
 
 
