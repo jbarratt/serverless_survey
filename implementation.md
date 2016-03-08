@@ -99,6 +99,32 @@ Parameters are now coming in as `body: {"foo": "bar"}`. I'm also getting `httpMe
 And `queryParams: {}`.
 
 
+[AWS Reference for Python on Lambda](http://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html)
+
+It includes `boto3` by default so we don't need to package it.
+However, if there's anything else, you can do a vendored install
+
+    pip install -t vendored/ -r requirements.txt
+    Successfully installed ....
+
+Ok, time for CORS.
+
+    npm install --save serverless-cors-plugin
+    sls endpoint deploy --all
+
+Hm, doesn't seem to be working. 
+
+Ok, flip to the UI, come back to it.
+
+[Serverless Client S3](https://github.com/serverless/serverless-client-s3)
+
+Ah. RTFMing for that led to the answer, I had forgotten to add the first
+one to the `s-project.json:plugins` list.
+
+    mkdir -p client/dist
+    # create index.html
+    sls client deploy
+    Successfully deployed client to: serverless-surveys.client.dev.us-west-2.s3-website-us-west-2.amazonaws.com 
 
 
 
