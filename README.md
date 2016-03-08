@@ -1,3 +1,7 @@
+# What is this?
+
+This is an experiment with using the [Serverless Framework](https://github.com/serverless/serverless) to run truly anonymous surveys.
+
 # Plan
 
 The idea is to start with a bone-simple setup: truly anonymous surveys.
@@ -28,7 +32,7 @@ Blogs that were useful:
 
 # Historical Log
 
-Since this is a new foray into `serverless`, I'll just log things as they happen.
+Since this is a new foray into `serverless`, I'll just log things as they happen in a discovery stream.
 
     npm install serverless -g
 
@@ -135,9 +139,14 @@ Ok! Time to see if we can actually fill in a form.
 
 Ok, get a tiny bit fancy, and use https://github.com/jarsbe/react-simple
 
-`sls function logs`
+It seems to work!
 
-Ok, so extra buckets go in s-resources-cf.json.
+Good to know, if you want to see what's going on in the debug logs, you can cd into the function directory, and
+
+    sls function logs
+
+So, where to put the extra buckets we need for results?
+Turns out `s-resources-cf.json` looks like the best option, followed by
 
     $ sls resources deploy
 
@@ -148,7 +157,7 @@ a bucket named
 
 i.e. dev-serverless-surveys-results
 
-I can hard code it for now but that's janky. Looks like https://github.com/serverless/serverless-helpers-js is sort of for this, but the python version is nil.
+I can hard code it for now but that's janky. Looks like https://github.com/serverless/serverless-helpers-js is sort of for this, but the python version is nil. (It loads the stack outputs from cloudformation, seems like an expensive API call to have on startup for lambda?)
 
 Can possibly put it in s-function.json and pass is as an env var, not very DRY, but it should work.
 
@@ -156,9 +165,13 @@ Can possibly put it in s-function.json and pass is as an env var, not very DRY, 
 
 .. then add RESULTS_BUCKET to s-function.json
 
+This *should* work. Looks like it's an open issue with the python runtime. I may have to file a github issue.
+
 Now all that's left is granting the IAM role to lambda to write files to the bucket.
 
 Cool, got that going. Just add it to the rest of the policies in s-resources-cf.json. Works with templates, too.
+
+And... ding ding ding, it all works end-to-end. Nice!
 
 
 ## TODO
