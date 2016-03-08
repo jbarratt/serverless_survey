@@ -7,7 +7,7 @@
   "memorySize": 1024,
   "custom": {
     "excludePatterns": [],
-    "envVars": []
+    "envVars": ["RESULTS_BUCKET"]
   },
   "endpoints": [
     {

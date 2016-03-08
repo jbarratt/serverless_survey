@@ -17,9 +17,19 @@ sys.path.append(os.path.join(here, "../vendored"))
 # import the shared library, now anything in component/lib/__init__.py can be
 # referenced as `lib.something`
 # import lib
+import uuid
+import boto3
 
 
 def handler(event, context):
+    bucket = os.environ.get('RESULTS_BUCKET', None)
+    if bucket is None:
+        log.debug("RESULTS_BUCKET not set")
+        bucket = "dev-serverless-surveys-results"
     log.debug("Received event {}".format(json.dumps(event)))
-    return {"message": "Submission sent to /dev/null",
+    s3 = boto3.resource('s3')
+    filename = "{}.json".format(uuid.uuid4())
+    s3.Bucket(bucket).put_object(Key=filename,
+                                 Body=json.dumps(event['body']))
+    return {"message": "Submission saved to {}".format(filename),
             "event": event}

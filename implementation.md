@@ -126,6 +126,8 @@ one to the `s-project.json:plugins` list.
     sls client deploy
     Successfully deployed client to: serverless-surveys.client.dev.us-west-2.s3-website-us-west-2.amazonaws.com 
 
+Pro tip! The default .gitignore ignores dist/. If you put your code there, you'll be wanting that.
+
 Great. And `sls endpoint deploy --all` now shows that (a) an OPTIONS endpoint is deployed and 
 (b) when I do GET and POST, I'm getting back Access-Control-Allow-Origin headers. So that's good.
 
@@ -135,11 +137,29 @@ Ok, get a tiny bit fancy, and use https://github.com/jarsbe/react-simple
 
 `sls function logs`
 
+Ok, so extra buckets go in s-resources-cf.json.
+
+    $ sls resources deploy
+
+I need to figure out how to get the code to know about
+a bucket named
+
+    ${stage}-${project}-results
+
+i.e. dev-serverless-surveys-results
+
+I can hard code it for now but that's janky. Looks like https://github.com/serverless/serverless-helpers-js is sort of for this, but the python version is nil.
+
+Can possibly put it in s-function.json and pass is as an env var, not very DRY, but it should work.
+
+    $ sls env set -r all -s dev -k RESULTS_BUCKET -v dev-serverless-survey-results
+
+.. then add RESULTS_BUCKET to s-function.json
+
+Now all that's left is granting the IAM role to lambda to write files to the bucket.
+
+
 ## TODO
 
 * create a client/src and webpack the app from there into client/dist
 * `sls stage create -s production -r us-west-2`
-
-
-
-

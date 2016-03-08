@@ -6,5 +6,8 @@
   "author": "Joshua Barratt",
   "description": "A Simple Serverless demo (survey system)",
   "custom": {},
-  "plugins": ["serverless-client-s3", "serverless-cors-plugin"]
+  "plugins": [
+    "serverless-client-s3",
+    "serverless-cors-plugin"
+  ]
 }

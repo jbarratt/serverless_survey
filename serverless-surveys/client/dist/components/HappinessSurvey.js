@@ -14,24 +14,37 @@ class HappinessSurvey extends React.Component {
                 </Input>
             </Panel>
             <Panel header="What's making you most happy right now?">
-                <Input type="textarea" ref="mosthappy" rows="6" />
+                <Input type="textarea" ref="mosthappy" rows="5" />
             </Panel>
-            <Panel ref="leasthappy" header="What's making you least happy right now?">
-                <Input type="textarea" ref="leasthappy" rows="6" />
+            <Panel header="What's making you least happy right now?">
+                <Input type="textarea" ref="leasthappy" rows="5" />
             </Panel>
             <Panel header="What can we do to move your score higher?">
-                <Input type="textarea" ref="raisescore" rows="6" />
+                <Input type="textarea" ref="raisescore" rows="5" />
             </Panel>
             <Panel header="Any feedback about the survey itself?">
-                <Input type="textarea"  ref="surveyfeedback" rows="6" />
+                <Input type="textarea"  ref="surveyfeedback" rows="5" />
             </Panel>
             <Button bsStyle="primary" bsSize="large" onClick={this.submitSurvey.bind(this)}>Submit Survey</Button>
         </form>
     }
     submitSurvey() {
+        var endpoint="https://qpzm97uod1.execute-api.us-west-2.amazonaws.com/dev/results"
         var rv = {};
+        rv['score'] = this.refs.score.getValue();
         rv['mosthappy'] = this.refs.mosthappy.getValue();
-        console.log(rv)
+        rv['leasthappy'] = this.refs.leasthappy.getValue();
+        rv['raisescore'] = this.refs.raisescore.getValue();
+        rv['surveyfeedback'] = this.refs.surveyfeedback.getValue();
+        console.log(rv);
+        fetch(endpoint, {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(rv)
+        });
     }
 }
 
