@@ -158,8 +158,15 @@ Can possibly put it in s-function.json and pass is as an env var, not very DRY, 
 
 Now all that's left is granting the IAM role to lambda to write files to the bucket.
 
+Cool, got that going. Just add it to the rest of the policies in s-resources-cf.json. Works with templates, too.
+
 
 ## TODO
 
+* Fix basic layout
+* Ensure that on submit bounces to a thanks page (react-router)
 * create a client/src and webpack the app from there into client/dist
 * `sls stage create -s production -r us-west-2`
+* add client id localstorage
+* add timestamp of result submission
+* figure out the `env` issue (file a bug if needed)
