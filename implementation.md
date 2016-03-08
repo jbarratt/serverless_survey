@@ -126,6 +126,20 @@ one to the `s-project.json:plugins` list.
     sls client deploy
     Successfully deployed client to: serverless-surveys.client.dev.us-west-2.s3-website-us-west-2.amazonaws.com 
 
+Great. And `sls endpoint deploy --all` now shows that (a) an OPTIONS endpoint is deployed and 
+(b) when I do GET and POST, I'm getting back Access-Control-Allow-Origin headers. So that's good.
+
+Ok! Time to see if we can actually fill in a form.
+
+Ok, get a tiny bit fancy, and use https://github.com/jarsbe/react-simple
+
+`sls function logs`
+
+## TODO
+
+* create a client/src and webpack the app from there into client/dist
+* `sls stage create -s production -r us-west-2`
+
 
 
 
