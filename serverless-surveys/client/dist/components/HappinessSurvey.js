@@ -4,8 +4,8 @@ class HappinessSurvey extends React.Component {
         var Input = ReactBootstrap.Input;
         var Button = ReactBootstrap.Button;
         return <form>
-            <Panel header="On a scale of 1-5, how happy are you with your company right now?">
-                <Input type="select" ref="score" defaultValue="5">
+            <Panel header="On a scale of 1 (Bad) - 5 (Great), how happy are you with your company right now?">
+                <Input type="select" ref="score" defaultValue="1">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -47,5 +47,4 @@ class HappinessSurvey extends React.Component {
         });
     }
 }
-
 window.App.HappinessSurvey = HappinessSurvey

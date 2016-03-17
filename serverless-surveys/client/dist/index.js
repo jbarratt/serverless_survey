@@ -1,3 +1,3 @@
-const { HappinessSurvey } = window.App
+const { LandingPage } = window.App
 
-ReactDOM.render(<HappinessSurvey />, document.getElementById("app"))
+ReactDOM.render(<LandingPage />, document.getElementById("app"))
