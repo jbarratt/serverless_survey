@@ -14,11 +14,6 @@ class LandingPage extends React.Component {
                         Happiness Survey (Q2 2016)
                     </Navbar.Brand>
                 </Navbar.Header>
-                <Navbar.Collapse>
-                    <Nav pullRight>
-                        <NavItem href="/about">About This Survey</NavItem>
-                    </Nav>
-                </Navbar.Collapse>
             </Navbar>
             <Grid>
                 <Row>
