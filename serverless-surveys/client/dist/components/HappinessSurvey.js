@@ -1,32 +1,53 @@
 class HappinessSurvey extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            submitted: false,
+        };
+    }
+
     render() {
         var Panel = ReactBootstrap.Panel;
         var Input = ReactBootstrap.Input;
         var Button = ReactBootstrap.Button;
-        return <form>
-            <Panel header="On a scale of 1 (Bad) - 5 (Great), how happy are you with your company right now?">
-                <Input type="select" ref="score" defaultValue="1">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </Input>
-            </Panel>
-            <Panel header="What's making you most happy right now?">
-                <Input type="textarea" ref="mosthappy" rows="5" />
-            </Panel>
-            <Panel header="What's making you least happy right now?">
-                <Input type="textarea" ref="leasthappy" rows="5" />
-            </Panel>
-            <Panel header="What can we do to move your score higher?">
-                <Input type="textarea" ref="raisescore" rows="5" />
-            </Panel>
-            <Panel header="Any feedback about the survey itself?">
-                <Input type="textarea"  ref="surveyfeedback" rows="5" />
-            </Panel>
-            <Button bsStyle="primary" bsSize="large" onClick={this.submitSurvey.bind(this)}>Submit Survey</Button>
-        </form>
+        var Modal = ReactBootstrap.Modal;
+        return  <div>
+            <Modal show={this.state.submitted}>
+                <Modal.Header>
+                    <Modal.Title>Thanks for sharing your thoughts!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>We really value your perspective on our business, and hearing
+                    from you like this is an invaluable way to help transform it
+                    into your ideal place to work. Thank you so much for whatever
+                    feedback you chose to provide!</p>
+                </Modal.Body>
+            </Modal>
+            <form>
+                <Panel header="On a scale of 1 (Bad) - 5 (Great), how happy are you with your company right now?">
+                    <Input type="select" ref="score" defaultValue="1">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </Input>
+                </Panel>
+                <Panel header="What's making you most happy right now?">
+                    <Input type="textarea" ref="mosthappy" rows="5" />
+                </Panel>
+                <Panel header="What's making you least happy right now?">
+                    <Input type="textarea" ref="leasthappy" rows="5" />
+                </Panel>
+                <Panel header="What can we do to move your score higher?">
+                    <Input type="textarea" ref="raisescore" rows="5" />
+                </Panel>
+                <Panel header="Any feedback about the survey itself?">
+                    <Input type="textarea"  ref="surveyfeedback" rows="5" />
+                </Panel>
+                <Button bsStyle="primary" bsSize="large" onClick={this.submitSurvey.bind(this)}>Submit Survey</Button>
+            </form>
+        </div>
     }
     submitSurvey() {
         var endpoint="https://qpzm97uod1.execute-api.us-west-2.amazonaws.com/dev/results"
@@ -45,6 +66,8 @@ class HappinessSurvey extends React.Component {
             },
             body: JSON.stringify(rv)
         });
+        this.state.submitted = true;
+        this.setState(this.state);
     }
 }
 window.App.HappinessSurvey = HappinessSurvey
