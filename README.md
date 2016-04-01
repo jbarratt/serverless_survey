@@ -173,6 +173,11 @@ Cool, got that going. Just add it to the rest of the policies in s-resources-cf.
 
 And... ding ding ding, it all works end-to-end. Nice!
 
+Ok, on to making the UI an actual thing, instead of duct taped together.
+Making a new ui/ directory instead of using the sls client tool.
+
+
+
 
 ## TODO
 

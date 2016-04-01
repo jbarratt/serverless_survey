@@ -1,3 +1,3 @@
-const { LandingPage } = window.App
+const { FinalLandingPage } = window.App
 
-ReactDOM.render(<LandingPage />, document.getElementById("app"))
+ReactDOM.render(<FinalLandingPage />, document.getElementById("app"))
