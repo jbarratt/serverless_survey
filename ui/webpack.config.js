@@ -6,10 +6,18 @@ var APP_DIR = path.resolve(__dirname, 'src/');
 
 var config = {
   entry: APP_DIR + '/index.js',
+  devtool: 'cheap-module-source-map',
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js'
   },
+  plugins: [
+     new webpack.DefinePlugin({
+       'process.env': {
+         'NODE_ENV': JSON.stringify('production')
+       }
+     })
+  ],
   module : {
     loaders : [
       {

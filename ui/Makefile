@@ -2,9 +2,14 @@
 
 BUCKET_NAME = survey-b0ea57d03
 
-build:
+devbuild:
 	./node_modules/.bin/webpack -d
 	cp src/index.html build/index.html
+
+build: 
+	@NODE_ENV=production ./node_modules/.bin/webpack -p
+	cp src/index.html build/index.html
+	cp src/favicon.ico build/favicon.ico
 
 # http://survey-b0ea57d03.s3-website-us-west-2.amazonaws.com
 bucket:
