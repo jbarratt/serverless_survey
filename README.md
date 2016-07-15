@@ -176,7 +176,14 @@ And... ding ding ding, it all works end-to-end. Nice!
 Ok, on to making the UI an actual thing, instead of duct taped together.
 Making a new ui/ directory instead of using the sls client tool.
 
+### Resurrecting new survey
 
+This worked:
+
+    aws s3 rm s3://dev-serverless-surveys-results --recursive
+
+Client bucket deploy is not working well, but I needed to fix that anyway.
+Making it independent with a build stage.
 
 
 ## TODO
