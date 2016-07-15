@@ -11,7 +11,7 @@ class FinalLandingPage extends React.Component {
             <Navbar>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        Happiness Survey (Q2 2016)
+                        Happiness Survey (Q3 2016)
                     </Navbar.Brand>
                 </Navbar.Header>
             </Navbar>
