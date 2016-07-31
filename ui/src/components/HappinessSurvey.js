@@ -1,4 +1,5 @@
 import React from 'react';
+import 'whatwg-fetch';
 import { Panel, Input, Button, Modal } from 'react-bootstrap';
 
 class HappinessSurvey extends React.Component {
