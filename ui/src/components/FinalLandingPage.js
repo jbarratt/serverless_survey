@@ -1,12 +1,8 @@
+import React from 'react';
+import { Navbar, Nav, NavItem, Grid, Row, Col } from 'react-bootstrap';
+
 class FinalLandingPage extends React.Component {
     render() {
-        var Navbar = ReactBootstrap.Navbar;
-        var Nav = ReactBootstrap.Nav;
-        var NavItem = ReactBootstrap.NavItem;
-        var Grid = ReactBootstrap.Grid;
-        var Row = ReactBootstrap.Row;
-        var Col = ReactBootstrap.Col;
-        var HappinessSurvey = window.App.HappinessSurvey;
         return <div>
             <Navbar>
                 <Navbar.Header>
@@ -26,4 +22,4 @@ class FinalLandingPage extends React.Component {
     }
 }
 
-window.App.FinalLandingPage = FinalLandingPage
+export default FinalLandingPage;
